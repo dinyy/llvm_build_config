@@ -1,4 +1,27 @@
- cmake ../llvm -G Ninja -DCMAKE_BUILD_TYPE=Debug \
+git clone https://gitee.com/mirrors/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
+git clone https://gitee.com/mirrors/riscv-gcc
+git clone https://gitee.com/mirrors/riscv-dejagnu
+git clone https://gitee.com/mirrors/riscv-glibc
+git clone https://gitee.com/mirrors/riscv-newlib
+git clone https://gitee.com/mirrors/riscv-binutils-gdb riscv-binutils
+git clone https://gitee.com/mirrors/riscv-binutils-gdb riscv-gdb 
+
+mkdir build 
+cd build
+../configure --prefix=/home/sole/opt/riscv/gcc --with-arch=rv64gcv
+make linux
+
+# down load llvm ZIP to get the newest LLVM  from github
+cd llvm-project-main
+mkdir build-host
+CC=gcc CXX=g++ cmake ../llvm -DLLVM_ENABLE_PROJECTS='clang' -G Ninja
+ninja llvm-tblgen clang-tblgen
+
+cd ..
+mkdir build-riscv
+cd build-riscv
+cmake ../llvm -G Ninja -DCMAKE_BUILD_TYPE=Debug \
     -DLLVM_HOST_TRIPLE=riscv64-unknown-linux-gnu \
     -DCMAKE_CROSSCOMPILING=True \
     -DCMAKE_SYSTEM_NAME=Linux \
@@ -16,4 +39,5 @@
     -DLLVM_INSTALL_TOOLCHAIN_ONLY=On \
     -DHAVE_STEADY_CLOCK=0 \
     -DHAVE_PTHREAD_AFFINITY=0 \
-    -DHAVE_POSIX_REGEX=0 
+    -DHAVE_POSIX_REGEX=0
+ninja 
