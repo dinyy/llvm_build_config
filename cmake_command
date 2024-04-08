@@ -15,7 +15,7 @@ make linux
 # down load llvm ZIP to get the newest LLVM  from github
 cd llvm-project-main
 mkdir build-host
-CC=gcc CXX=g++ cmake ../llvm -DLLVM_ENABLE_PROJECTS='clang' -G Ninja
+CC=gcc CXX=g++ cmake ../llvm -DLLVM_ENABLE_PROJECTS='clang' -G Ninja -DCMAKE_BUILD_TYPE=Debug
 ninja llvm-tblgen clang-tblgen
 
 cd ..
