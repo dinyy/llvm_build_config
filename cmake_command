@@ -1,11 +1,5 @@
-git clone https://gitee.com/mirrors/riscv-gnu-toolchain
+git clone https://github.com/riscv-collab/riscv-gcc.git
 cd riscv-gnu-toolchain
-git clone https://gitee.com/mirrors/riscv-gcc
-git clone https://gitee.com/mirrors/riscv-dejagnu
-git clone https://gitee.com/mirrors/riscv-glibc
-git clone https://gitee.com/mirrors/riscv-newlib
-git clone https://gitee.com/mirrors/riscv-binutils-gdb riscv-binutils
-git clone https://gitee.com/mirrors/riscv-binutils-gdb riscv-gdb 
 
 mkdir build 
 cd build
